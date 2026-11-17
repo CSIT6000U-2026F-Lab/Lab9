@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 9 — Online Code Explorer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="toolbar">
+        <h1 class="toolbar-title">📁 Lab 9 — Online Code Explorer</h1>
+        <div class="toolbar-actions">
+            <span id="status-message" class="status-message" role="status"></span>
+            <button id="callgraph-btn" class="toolbar-btn" type="button">Call graph</button>
+            <button id="refresh-btn" class="toolbar-btn" type="button">Refresh</button>
+            <button id="save-btn" class="toolbar-btn" type="button">Save</button>
+            <button id="delete-btn" class="toolbar-btn toolbar-btn-danger" type="button">Delete</button>
+        </div>
+    </header>
+
+    <div class="workspace">
+        <aside class="sidebar">
+            <h2 class="sidebar-heading">Files</h2>
+            <form id="create-form" class="create-form">
+                <input
+                    id="new-filename"
+                    class="create-input"
+                    type="text"
+                    placeholder="new_file.py"
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+                <button id="new-btn" class="toolbar-btn create-btn" type="submit">New</button>
+            </form>
+            <ul id="file-list" class="file-list"></ul>
+        </aside>
+
+        <section class="editor-pane">
+            <div id="editor-label" class="editor-label"></div>
+            <div id="editor" class="editor"></div>
+            <div id="editor-fallback" class="editor-fallback" hidden></div>
+        </section>
+    </div>
+
+    <div id="discard-overlay" class="modal-overlay" hidden>
+        <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="discard-title">
+            <h3 id="discard-title" class="modal-title">Unsaved changes</h3>
+            <p class="modal-body">The following files have not been saved:</p>
+            <ul id="discard-file-list" class="modal-file-list"></ul>
+            <p class="modal-body">Discard these drafts and refresh?</p>
+            <div class="modal-actions">
+                <button id="discard-cancel" class="toolbar-btn" type="button">Cancel</button>
+                <button id="discard-confirm" class="toolbar-btn toolbar-btn-danger" type="button">Discard and refresh</button>
+            </div>
+        </div>
+    </div>
+
+    <aside id="callgraph-panel" class="search-panel callgraph-panel" hidden>
+        <div class="search-panel-header">
+            <h3 id="callgraph-title" class="search-panel-title">Call graph</h3>
+            <div class="callgraph-header-actions">
+                <button id="callgraph-svg" class="toolbar-btn search-panel-close" type="button">SVG</button>
+                <button id="callgraph-pdf" class="toolbar-btn search-panel-close" type="button">PDF</button>
+                <button id="callgraph-close" class="toolbar-btn search-panel-close" type="button">Close</button>
+            </div>
+        </div>
+        <p id="callgraph-empty" class="search-panel-empty" hidden>No call edges</p>
+        <div id="callgraph-canvas" class="callgraph-canvas"></div>
+    </aside>
+
+    <script src="app.js"></script>
+</body>
+</html>
